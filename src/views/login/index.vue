@@ -2,7 +2,9 @@
   <div class="login-container">
     <van-nav-bar
         title="登录"
-      />
+      >
+      <van-icon slot="left" name="cross" @click="$router.back()" />
+    </van-nav-bar>
        <van-form @submit="onSubmit" ref="loginForm">
       <van-field
         name="mobile"
@@ -96,6 +98,7 @@ export default {
         console.log(res)
         this.$toast.success('登陆成功')
         this.$store.commit('setToken', res.data)
+        this.$router.push('/my')
       } catch (err) {
         if (err.response.status === 400) {
           this.$toast.fail(err)
